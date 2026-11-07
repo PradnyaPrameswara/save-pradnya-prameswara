@@ -1,0 +1,32 @@
+---
+import "../styles/global.css";
+import { reference } from "../data/reference";
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#1ba11a" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <title>404 — Page Not Found | Save Pradnya Prameswara</title>
+    <meta name="description" content="This retro tribute page could not be found. Return to Save Pradnya Prameswara." />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body style={`--reference-tile: url('${reference.tile}')`}>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <main id="main-content" class="page-wrap" style="min-height: 85vh; display: flex; flex-direction: column; justify-content: center; text-align: center; gap: 22px;">
+      <h1 style="color: #fff; font: bold clamp(3.5rem, 13vw, 7rem)/1 'Times New Roman', Times, serif; margin: 0;">404!</h1>
+      <p style="color: #ffff00; font-size: clamp(1.5rem, 5vw, 2.25rem); font-weight: bold; margin: 0;">This page has gone missing!</p>
+      <p style="color: #fff; line-height: 1.7; margin: 0 auto; max-width: 540px;">
+        Even great developers cannot find every missing file. This is a fictional
+        tribute website, not a donation or fundraising page.
+      </p>
+      <p style="margin: 10px 0;"><a href="/" style="color: #ffff00; font-size: 1.35rem; font-weight: bold; text-underline-offset: 5px;">Take me back home!</a></p>
+      <p style="font: 12px/1.5 Arial, sans-serif; color: #f2f2f2;">
+        Unofficial fan-inspired parody. Not affiliated with AMC.
+      </p>
+    </main>
+  </body>
+</html>

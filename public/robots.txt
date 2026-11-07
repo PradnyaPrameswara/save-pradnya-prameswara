@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# All HTML pages also carry a noindex meta directive. Robots are allowed to
+# fetch the page to read noindex; blocking crawling here would hide that signal.

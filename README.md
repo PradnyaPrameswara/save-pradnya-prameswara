@@ -35,3 +35,9 @@ The content of this project is original parody copy, not the original show's fun
 ## Scope
 
 One responsive landing page. Visual fidelity is prioritized over modern UI trends: narrow centered page, green tiled sparkle background, yellow Comic-Sans-style copy, seven reference photos, red embossed CTA, brown banner, dark counter and vintage footer. No backend or payment integration; the button reveals a truthful support message with a GitHub link. This project is independent of AMC and the television series.
+
+## Release status and hosting
+
+This repository deliberately does **not** auto-deploy. Before a public release, follow [the release checklist](docs/release-checklist.md) and clear rights for any third-party film photos or decorative assets. Even after hosting, keep the clearly labeled parody content and no-payment behavior.
+
+A custom `404.html`, `robots.txt`, and optional Cloudflare Pages `_headers` are included. The page continues to use `noindex, nofollow` until a conscious publication decision is made. When the user picks a real domain, add a validated absolute canonical/OG image URL rather than inventing one.

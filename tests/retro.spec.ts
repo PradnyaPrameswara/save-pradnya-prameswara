@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
 import { mkdirSync } from "node:fs";
 
-const widths = [375, 390, 430, 768, 1280, 1440];
+const widths = [320, 360, 375, 390, 430, 560, 768, 1024, 1280, 1440];
 
 for (const width of widths) {
   test(`original-inspired layout fits ${width}px viewport`, async ({ page }) => {
@@ -35,7 +35,7 @@ test("noindex prevents a parody site being mistaken for a real fundraiser", asyn
 
 test("captures desktop and mobile screenshots with the original reference photos", async ({ page }) => {
   mkdirSync("browser-review", { recursive: true });
-  for (const width of [390, 1440]) {
+  for (const width of [320, 390, 768, 1440]) {
     await page.setViewportSize({ width, height: 900 });
     await page.goto("/", { waitUntil: "load" });
 
@@ -81,4 +81,35 @@ test("reference photos preserve their original uncropped aspect ratios", async (
     return { naturalRatio: el.naturalWidth / el.naturalHeight, renderedRatio: (el.clientWidth - border) / (el.clientHeight - border) };
   });
   expect(Math.abs(naturalRatio - renderedRatio)).toBeLessThan(0.04);
+});
+
+
+test("mobile support panel stays usable without clipping at 320px", async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 640 });
+  await page.goto("/");
+  const button = page.getByRole("button", { name: /Click Here to Help/ });
+  await button.click();
+  const panel = page.getByRole("region", { name: "Ways to support Pradnya" });
+  await expect(panel).toBeVisible();
+  const bounds = await panel.boundingBox();
+  expect(bounds).not.toBeNull();
+  expect(bounds!.x).toBeGreaterThanOrEqual(0);
+  expect(bounds!.x + bounds!.width).toBeLessThanOrEqual(320);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(320);
+});
+
+test("keyboard navigation reaches the skip link and support CTA", async ({ page }) => {
+  await page.goto("/");
+  await page.keyboard.press("Tab");
+  await expect(page.locator(".skip-link")).toBeFocused();
+  await page.getByRole("button", { name: /Click Here to Help/ }).focus();
+  await expect(page.getByRole("button", { name: /Click Here to Help/ })).toBeFocused();
+});
+
+test("reduced-motion preference suppresses button shift", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.goto("/");
+  await expect(page.locator("html")).toHaveCSS("scroll-behavior", "auto");
+  const button = page.getByRole("button", { name: /Click Here to Help/ });
+  await expect(button).toHaveCSS("transform", "none");
 });

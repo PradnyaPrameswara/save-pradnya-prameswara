@@ -100,24 +100,50 @@ a:focus-visible, button:focus-visible { outline: 3px solid #fff; outline-offset:
 .mobile-break { display: none; }
 @media (max-width: 560px) {
   .page-wrap { width: min(100% - 22px, 700px); padding-top: 18px; }
-  .site-heading h1 { font-size: clamp(2.5rem, 11vw, 3.7rem); }
+  .site-heading h1 { font-size: clamp(2.35rem, 10.4vw, 3.65rem); line-height: 1.04; overflow-wrap: anywhere; }
   .hero-portrait { width: min(320px, 86%); }
   .photo-strip-three { gap: 5px; margin: 20px 0 22px; }
-  .photo-strip-three .portrait { width: 32%; }
+  .photo-strip-three .portrait { width: min(32%, 140px); min-width: 0; }
   .portrait img { border-width: 5px; }
   .photo-strip-three img { height: auto; }
   .photo-strip-three .portrait:nth-child(2) { align-self: center; }
   .family-portrait { width: min(330px,88%); margin-bottom: 25px; }
   .story-block { padding: 0 5px; font-size: 15px; }
+  .story-block p { text-align: left; line-height: 1.65; hyphens: auto; }
   .story-lead { font-size: 17px; }
   .photo-strip-two { gap: 9px; margin: 20px 0 30px; }
   .photo-strip-two img { height: auto; }
   .appeal { margin-top: 30px; }
-  .appeal-line-one { background-size: auto 50px, auto 50px; padding: 30px 7px 12px; }
+  .appeal-line-one { background-size: auto 44px, auto 44px; padding: 25px clamp(30px, 8vw, 48px) 12px; font-size: clamp(1.25rem, 5.5vw, 1.75rem); }
   .retro-banner { margin: 0; }
   .retro-banner h2 { font-size: clamp(1.75rem, 8vw, 2.5rem); }
   .mobile-break { display: block; }
   .desktop-break { display: none; }
   .counter-panel { margin: 0; }
 }
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .donation-button:hover { filter: none; } }
+@media (max-width: 359px) {
+  .page-wrap { width: calc(100% - 18px); padding-top: 14px; }
+  .site-heading h1 { font-size: clamp(2.1rem, 10vw, 2.35rem); }
+  .site-subtitle { font-size: 1rem; margin-bottom: 14px; }
+  .hero-portrait { width: min(90%, 300px); }
+  .photo-strip-three { gap: 4px; }
+  .photo-strip-three img, .photo-strip-two img { border-width: 3px; }
+  .photo-strip-two { margin-inline: 2px; }
+  .story-block { font-size: 14px; }
+  .story-lead { font-size: 16px; }
+  .appeal-line { overflow-wrap: break-word; }
+  .appeal-line-one { background-size: auto 38px, auto 38px; padding-inline: 27px; }
+  .retro-banner h2 { font-size: clamp(1.6rem, 7.8vw, 2rem); }
+  .donation-button { min-width: min(245px, 86vw); }
+  .site-footer nav { column-gap: 15px; }
+}
+@media (min-width: 561px) and (max-width: 820px) {
+  .photo-strip-three { gap: clamp(7px, 1.5vw, 12px); }
+  .photo-strip-two { margin-inline: 20px; gap: clamp(12px, 3vw, 24px); }
+  .retro-banner h2 { font-size: clamp(2.1rem, 4.6vw, 2.85rem); }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .donation-button:hover { filter: none; }
+  .donation-button:active { transform: none; }
+}

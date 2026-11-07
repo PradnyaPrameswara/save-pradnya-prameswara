@@ -23,6 +23,9 @@ jobs:
           node -e "const {createRequire}=require('node:module'); const r=createRequire(process.cwd()+'/package.json'); for(const p of ['@astrojs/check','typescript']) console.log(p, r.resolve(p))"
       - run: pnpm typecheck
       - run: pnpm build
+      - name: Verify Astro checker module loads
+        run: |
+          node --input-type=module -e "try { const checker = await import('@astrojs/check'); console.log(Object.keys(checker)); } catch (error) { console.error(error); process.exitCode = 1; }"
       - run: pnpm check
       - run: test -f dist/index.html
       - run: pnpm exec playwright install --with-deps chromium

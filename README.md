@@ -41,3 +41,7 @@ One responsive landing page. Visual fidelity is prioritized over modern UI trend
 This repository deliberately does **not** auto-deploy. Before a public release, follow [the release checklist](docs/release-checklist.md) and clear rights for any third-party film photos or decorative assets. Even after hosting, keep the clearly labeled parody content and no-payment behavior.
 
 A custom `404.html`, `robots.txt`, and optional Cloudflare Pages `_headers` are included. The page continues to use `noindex, nofollow` until a conscious publication decision is made. When the user picks a real domain, add a validated absolute canonical/OG image URL rather than inventing one.
+
+## Visual parity review
+
+The grounded [visual parity matrix](docs/visual-parity-audit.md) links to the historical community screenshot and documents intentional differences. CI also exports per-viewport geometry JSON with screenshots; neither constitutes a pixel-perfect claim.

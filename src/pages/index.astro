@@ -22,8 +22,12 @@ import { gallery, galleryDecorationStyle, galleryMode } from "../data/gallery";
     <meta property="og:title" content="Save Pradnya Prameswara — A Retro Web Tribute" />
     <meta property="og:description" content="A fictional old-school Breaking Bad-inspired tribute to a software developer. No real donations are collected." />
     <meta name="twitter:card" content="summary" />
-    <link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin />
-    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+    {galleryMode === "reference" && (
+      <>
+        <link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin />
+        <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+      </>
+    )}
     <link rel="preload" as="image" href={gallery[0].src} fetchpriority="high" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

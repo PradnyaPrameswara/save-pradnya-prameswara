@@ -54,3 +54,12 @@ for (const width of [320, 390, 768, 1440]) {
     await expect(page.getByText(/no real donations or payments/i)).toBeVisible();
   });
 }
+
+for (const width of [320, 390]) {
+  test(`mobile appeal retains the space where the desktop line break is hidden at ${width}px`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto("/");
+    const copy = await page.locator("#appeal-title").innerText();
+    expect(copy).toMatch(/encouragement\s+and keep this developer/);
+  });
+}

@@ -40,7 +40,7 @@ import { gallery, galleryDecorationStyle, galleryMode } from "../data/gallery";
       <header class="site-heading">
         <h1>Pradnya Prameswara</h1>
         <p class="site-subtitle">Developer, Dreamer &amp; Problem Solver</p>
-        <figure class="portrait hero-portrait">
+        <figure class="portrait hero-portrait portrait--1">
           <img
             src={gallery[0].src} data-fallback-src={gallery[0].fallback}
             alt={gallery[0].alt}
@@ -51,11 +51,11 @@ import { gallery, galleryDecorationStyle, galleryMode } from "../data/gallery";
           />
         </figure>
         <div class="photo-strip photo-strip-three" aria-label="Breaking Bad reference photo gallery">
-          <figure class="portrait"><img src={gallery[1].src} data-fallback-src={gallery[1].fallback} width={gallery[1].width} height={gallery[1].height} alt={gallery[1].alt} loading="lazy" decoding="async" /></figure>
-          <figure class="portrait"><img src={gallery[2].src} data-fallback-src={gallery[2].fallback} width={gallery[2].width} height={gallery[2].height} alt={gallery[2].alt} loading="lazy" decoding="async" /></figure>
-          <figure class="portrait"><img src={gallery[3].src} data-fallback-src={gallery[3].fallback} width={gallery[3].width} height={gallery[3].height} alt={gallery[3].alt} loading="lazy" decoding="async" /></figure>
+          <figure class="portrait portrait--2"><img src={gallery[1].src} data-fallback-src={gallery[1].fallback} width={gallery[1].width} height={gallery[1].height} alt={gallery[1].alt} loading="lazy" decoding="async" /></figure>
+          <figure class="portrait portrait--3"><img src={gallery[2].src} data-fallback-src={gallery[2].fallback} width={gallery[2].width} height={gallery[2].height} alt={gallery[2].alt} loading="lazy" decoding="async" /></figure>
+          <figure class="portrait portrait--4"><img src={gallery[3].src} data-fallback-src={gallery[3].fallback} width={gallery[3].width} height={gallery[3].height} alt={gallery[3].alt} loading="lazy" decoding="async" /></figure>
         </div>
-        <figure class="portrait family-portrait">
+        <figure class="portrait family-portrait portrait--5">
           <img src={gallery[4].src} data-fallback-src={gallery[4].fallback} width={gallery[4].width} height={gallery[4].height} alt={gallery[4].alt} loading="lazy" decoding="async" />
         </figure>
       </header>
@@ -81,8 +81,8 @@ import { gallery, galleryDecorationStyle, galleryMode } from "../data/gallery";
       </section>
 
       <div class="photo-strip photo-strip-two" aria-label="More original reference photographs">
-        <figure class="portrait"><img src={gallery[5].src} data-fallback-src={gallery[5].fallback} width={gallery[5].width} height={gallery[5].height} alt={gallery[5].alt} loading="lazy" decoding="async" /></figure>
-        <figure class="portrait"><img src={gallery[6].src} data-fallback-src={gallery[6].fallback} width={gallery[6].width} height={gallery[6].height} alt={gallery[6].alt} loading="lazy" decoding="async" /></figure>
+        <figure class="portrait portrait--6"><img src={gallery[5].src} data-fallback-src={gallery[5].fallback} width={gallery[5].width} height={gallery[5].height} alt={gallery[5].alt} loading="lazy" decoding="async" /></figure>
+        <figure class="portrait portrait--7"><img src={gallery[6].src} data-fallback-src={gallery[6].fallback} width={gallery[6].width} height={gallery[6].height} alt={gallery[6].alt} loading="lazy" decoding="async" /></figure>
       </div>
 
       <section class="story-block long-story" aria-label="A message for Pradnya">
@@ -135,7 +135,7 @@ import { gallery, galleryDecorationStyle, galleryMode } from "../data/gallery";
 
       <section class="action-area" aria-label="Support the project">
         <div class="retro-banner">
-          <h2>Save Pradnya<br class="mobile-break" /> Prameswara</h2>
+          <h2><span class="retro-banner__wordmark">Save Pradnya<br class="mobile-break" /> Prameswara</span></h2>
           <p>You can help keep the developer coding!</p>
         </div>
         <SupportButton client:load />

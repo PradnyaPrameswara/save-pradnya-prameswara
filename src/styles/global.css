@@ -14,7 +14,11 @@ body {
   min-width: 0;
   min-height: 100vh;
   background-color: #1ba11a;
-  background-image: var(--reference-tile, none);
+  /* Secondary layers remain visible if the temporary remote sparkle tile fails. */
+  background-image: var(--reference-tile, none),
+    radial-gradient(circle at 17px 23px, rgba(255, 245, 140, .72) 0 1.2px, transparent 2px),
+    radial-gradient(circle at 91px 70px, rgba(255, 241, 113, .62) 0 1px, transparent 2px);
+  background-size: auto, 137px 117px, 173px 137px;
   background-repeat: repeat;
   background-position: left top;
   color: #fff;
@@ -50,6 +54,26 @@ a:focus-visible, button:focus-visible { outline: 3px solid #fff; outline-offset:
   border: 5px solid #e3ce31;
   background: #907e40;
   object-fit: contain;
+}
+.portrait.reference-unavailable {
+  position: relative;
+  min-height: 130px;
+  background: #31642a;
+  outline: 3px solid #e3ce31;
+  display: grid;
+  place-items: center;
+}
+.portrait.reference-unavailable img { opacity: 0; }
+.portrait.reference-unavailable::after {
+  content: "REFERENCE PHOTO UNAVAILABLE";
+  position: absolute;
+  inset: 10px;
+  display: grid;
+  place-items: center;
+  padding: 10px;
+  color: #fff56e;
+  font: bold 13px/1.4 "Comic Sans MS", "Comic Neue", cursive;
+  text-align: center;
 }
 .hero-portrait { width: min(350px, 85%); margin: 0 auto 12px; }
 .hero-portrait img { aspect-ratio: auto; }

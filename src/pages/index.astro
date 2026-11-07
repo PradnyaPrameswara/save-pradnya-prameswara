@@ -1,0 +1,154 @@
+---
+import "../styles/global.css";
+import { SupportButton } from "../components/interactive/SupportButton";
+import { reference } from "../data/reference";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#1ba11a" />
+    <title>Save Pradnya Prameswara — A Retro Web Tribute</title>
+    <meta
+      name="description"
+      content="A playful early-2000s style tribute to Pradnya Prameswara, inspired by the fictional Save Walter White website from Breaking Bad. No donations are collected."
+    />
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body style={`--reference-tile: url('${reference.tile}'); --reference-bow-left: url('${reference.bowLeft}'); --reference-bow-right: url('${reference.bowRight}')`}>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <main id="main-content" class="page-wrap">
+      <header class="site-heading">
+        <h1>Pradnya Prameswara</h1>
+        <p class="site-subtitle">Developer, Dreamer &amp; Problem Solver</p>
+        <figure class="portrait hero-portrait">
+          <img
+            src={reference.photo(1)}
+            alt="Temporary reference photo of Walter White smiling, not a photo of Pradnya"
+            width="330"
+            height="330"
+            fetchpriority="high"
+            decoding="async"
+          />
+        </figure>
+        <div class="photo-strip photo-strip-three" aria-label="Breaking Bad reference photo gallery">
+          <figure class="portrait"><img src={reference.photo(2)} width="220" height="230" alt="Temporary Breaking Bad reference photo of Walter White and his son" loading="lazy" decoding="async" /></figure>
+          <figure class="portrait"><img src={reference.photo(3)} width="220" height="230" alt="Temporary Breaking Bad reference photo of Walter and a baby" loading="lazy" decoding="async" /></figure>
+          <figure class="portrait"><img src={reference.photo(4)} width="220" height="230" alt="Temporary Breaking Bad reference photo of Walter with a family member" loading="lazy" decoding="async" /></figure>
+        </div>
+        <figure class="portrait family-portrait">
+          <img src={reference.photo(5)} width="340" height="260" alt="Temporary Breaking Bad family reference photo" loading="lazy" decoding="async" />
+        </figure>
+      </header>
+
+      <section class="story-block intro-story" aria-label="Why save Pradnya">
+        <p class="copy-yellow story-lead">
+          My friend Pradnya is amazing. It is funny how easy it is to forget
+          that until you see how many browser tabs, broken builds, and impossible
+          deadlines one developer can face. Some people see a website. He sees
+          a hundred things that could be made faster, cleaner, and easier to use.
+          Sometimes it feels like the bugs are winning. But they are not.
+          This is a page to remind him that there are people rooting for him!
+        </p>
+        <p class="copy-yellow">
+          He spends a lot of time working on the tiny details that other people
+          never notice. Buttons should work. Pages should fit on little phone
+          screens. Forms should tell the truth. Even the smallest thing can turn
+          into a really big problem if you ignore it for long enough. It would
+          be easier to give up and call it finished. He usually opens another
+          tab, looks at the problem again, and keeps going. So I think someone
+          should make a ridiculous little website saying THANK YOU.
+        </p>
+      </section>
+
+      <div class="photo-strip photo-strip-two" aria-label="More original reference photographs">
+        <figure class="portrait"><img src={reference.photo(6)} width="320" height="250" alt="Temporary photo of Walter White and Skyler from Breaking Bad" loading="lazy" decoding="async" /></figure>
+        <figure class="portrait"><img src={reference.photo(7)} width="320" height="250" alt="Temporary photo portrait of Walter White from Breaking Bad" loading="lazy" decoding="async" /></figure>
+      </div>
+
+      <section class="story-block long-story" aria-label="A message for Pradnya">
+        <p>
+          Pradnya works on websites and software. That probably sounds pretty
+          normal until you sit next to a developer and see what actually happens.
+          There are screens full of code, confusing messages that appear for no
+          reason, and things that worked perfectly yesterday but have decided
+          not to work today. It is a mystery to me how anybody understands it.
+          He keeps explaining that there is a reason for every problem. I think
+          he just likes solving puzzles that the rest of us cannot even read.
+        </p>
+        <p>
+          He learned about technology and education at Universitas Pendidikan
+          Ganesha in Bali. He likes working on the parts of a project that make
+          life easier for other people, from the interface that you click on to
+          the systems behind it. There are so many different things to think
+          about. Sometimes a change that looks really small can affect an entire
+          page. That is why he checks it on a phone, then a laptop, then another
+          screen, and somehow always finds something else to improve.
+        </p>
+        <p>
+          The thing is, a working website does not just happen. Somebody has to
+          think about how it looks and how it behaves. Somebody has to make sure
+          people can read it, find what they need, and use it without getting
+          lost. And somebody has to fix the problems that show up after everyone
+          else has gone home. He cares about those things. He wants the finished
+          work to feel simple, even when building it was anything but simple.
+        </p>
+        <p>
+          So if you are reading this and wondering why this page looks like it
+          came straight out of the year 2009, there is a very good reason. It
+          is a little tribute to the wonderfully strange internet we grew up
+          with. It has huge letters, a crazy green background, photos that have
+          nothing to do with the actual developer yet, and a dramatic button at
+          the bottom. None of it is a real appeal for money. It is just a funny
+          way of telling Pradnya to keep doing what he loves. The internet
+          needs people who still care about making good things.
+        </p>
+      </section>
+
+      <section class="appeal" aria-labelledby="appeal-title">
+        <p class="appeal-line appeal-line-one">What a wonderful developer we have!</p>
+        <p class="appeal-line appeal-line-two">But there are still bugs to fix. So many bugs!</p>
+        <p id="appeal-title" class="appeal-line appeal-line-three">
+          To help, please send your encouragement<br class="desktop-break" />
+          and keep this developer in your thoughts!
+        </p>
+      </section>
+
+      <section class="action-area" aria-label="Support the project">
+        <div class="retro-banner">
+          <h2>Save Pradnya<br class="mobile-break" /> Prameswara</h2>
+          <p>You can help keep the developer coding!</p>
+        </div>
+        <SupportButton client:load />
+        <p class="no-payments">A parody tribute — no real donations or payments.</p>
+      </section>
+
+      <section class="counter-panel" aria-label="Decorative website counter">
+        <p class="counter-headline">ANY AMOUNT OF SUPPORT WOULD BE APPRECIATED!</p>
+        <p class="counter-subtitle">Visitors so far:</p>
+        <div class="odometer" aria-label="Decorative counter, not actual visitor analytics">
+          <span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>1</span>
+        </div>
+        <p class="counter-notice">* Just an old-school decorative counter, not a live statistic.</p>
+      </section>
+
+      <footer class="site-footer">
+        <nav aria-label="Footer navigation">
+          <a href="https://github.com/PradnyaPrameswara" target="_blank" rel="noopener noreferrer">About &amp; Contact</a>
+          <a href="#reference-note">About This Tribute</a>
+          <a href="https://www.savewalterwhite.com/" target="_blank" rel="noopener noreferrer">Original Inspiration</a>
+        </nav>
+        <p id="reference-note" class="reference-note">
+          Unofficial Breaking Bad-inspired fan homage. The seven photos are
+          temporary Walter White reference images; they do not depict Pradnya.
+          No affiliation with AMC or the series, and no donations are accepted.
+        </p>
+        <p class="copyright">© {new Date().getFullYear()} Save Pradnya Prameswara — just for fun.</p>
+      </footer>
+    </main>
+  </body>
+</html>

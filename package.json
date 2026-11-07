@@ -1,0 +1,33 @@
+{
+  "name": "save-pradnya-prameswara",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "engines": { "node": ">=22.12.0" },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "typecheck": "tsc --noEmit",
+    "test:e2e": "playwright test",
+    "ui:info": "shadcn info"
+  },
+  "dependencies": {
+    "@astrojs/react": "^6.0.2",
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^7.2.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "tailwindcss": "^4.3.3"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@playwright/test": "1.56.1",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
+    "shadcn": "4.23.0",
+    "typescript": "^5.6.3"
+  },
+  "packageManager": "pnpm@12.14.0"
+}

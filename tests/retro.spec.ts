@@ -164,3 +164,10 @@ test("logs natural dimensions of the same seven reference photo slots", async ({
   console.info("TEMPORARY_REFERENCE_IMAGE_DIMENSIONS", JSON.stringify(values));
   expect(values).toHaveLength(7);
 });
+
+
+test("reference photos reserve exact intrinsic dimensions", async ({ page }) => {
+  await page.goto("/");
+  const dimensions = await page.locator(".portrait img").evaluateAll(images => images.map(image => [Number(image.getAttribute("width")), Number(image.getAttribute("height"))]));
+  expect(dimensions).toEqual([[402,517],[247,322],[226,301],[220,343],[362,250],[277,302],[193,266]]);
+});

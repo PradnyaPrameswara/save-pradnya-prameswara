@@ -1,0 +1,89 @@
+name: Manual preview package or approved Cloudflare deployment
+on:
+  workflow_dispatch:
+    inputs:
+      operation:
+        description: "Create a review artifact, or deploy a rights-checked personal preview"
+        type: choice
+        required: true
+        default: package-only
+        options:
+          - package-only
+          - deploy-preview
+      rights_confirmation:
+        description: "For deploy-preview only: type RIGHTS_CONFIRMED"
+        type: string
+        required: false
+
+permissions:
+  contents: read
+
+jobs:
+  package-only:
+    if: ${{ inputs.operation == 'package-only' }}
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 12.14.0
+          run_install: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.23.4"
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Build review-only reference artifact (not hosted)
+        run: pnpm build
+        env:
+          PUBLIC_IMAGE_MODE: reference
+      - uses: actions/upload-artifact@v4
+        with:
+          name: retro-private-review-build
+          path: dist/
+          if-no-files-found: error
+
+  deploy-preview:
+    if: ${{ inputs.operation == 'deploy-preview' }}
+    runs-on: ubuntu-24.04
+    environment: website-preview
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 12.14.0
+          run_install: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.23.4"
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Enforce authorized personal images and explicit confirmation
+        env:
+          PUBLIC_IMAGE_MODE: personal
+          RIGHTS_CONFIRMATION: ${{ inputs.rights_confirmation }}
+        run: node scripts/release-gate.mjs
+      - name: Verify Cloudflare settings are provided
+        env:
+          PROJECT: ${{ vars.CF_PAGES_PROJECT }}
+          ACCOUNT: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          test -n "$PROJECT" || { echo "CF_PAGES_PROJECT variable required"; exit 1; }
+          test -n "$ACCOUNT" || { echo "CLOUDFLARE_ACCOUNT_ID secret required"; exit 1; }
+          test -n "$TOKEN" || { echo "CLOUDFLARE_API_TOKEN secret required"; exit 1; }
+      - name: Build rights-checked personal preview
+        env:
+          PUBLIC_IMAGE_MODE: personal
+        run: pnpm build
+      - name: Deploy to nonproduction Pages branch
+        id: deploy
+        uses: cloudflare/wrangler-action@v4
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy dist --project-name=${{ vars.CF_PAGES_PROJECT }} --branch=retro-review-${{ github.run_id }}
+      - name: Verify the actual HTTPS preview
+        env:
+          DEPLOYMENT_URL: ${{ steps.deploy.outputs.deployment-url }}
+        run: node scripts/verify-deployment.mjs

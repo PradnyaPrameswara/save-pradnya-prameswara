@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+import { mkdirSync } from "node:fs";
 
 const widths = [375, 390, 430, 768, 1280, 1440];
 
@@ -30,4 +31,26 @@ test("noindex prevents a parody site being mistaken for a real fundraiser", asyn
   await page.goto("/");
   await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", "noindex, nofollow");
   await expect(page.getByText(/not a live statistic/i)).toBeVisible();
+});
+
+test("captures desktop and mobile screenshots with the original reference photos", async ({ page }) => {
+  mkdirSync("browser-review", { recursive: true });
+  for (const width of [390, 1440]) {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto("/", { waitUntil: "load" });
+
+    const images = page.locator(".portrait img");
+    for (const img of await images.all()) {
+      await img.scrollIntoViewIfNeeded();
+    }
+
+    const hero = page.locator(".hero-portrait img");
+    await expect.poll(() =>
+      hero.evaluate((image: HTMLImageElement) => image.complete && image.naturalWidth > 0),
+      { timeout: 15_000 }
+    ).toBe(true);
+
+    await page.evaluate(() => window.scrollTo(0, 0));
+    await page.screenshot({ path: `browser-review/home-${width}.png`, fullPage: true });
+  }
 });

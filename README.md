@@ -38,7 +38,7 @@ One responsive landing page. Visual fidelity is prioritized over modern UI trend
 
 ## Release status and hosting
 
-This repository deliberately does **not** auto-deploy. Before a public release, follow [the release checklist](docs/release-checklist.md) and clear rights for any third-party film photos or decorative assets. Even after hosting, keep the clearly labeled parody content and no-payment behavior.
+A GitHub Pages **public visual preview** workflow builds from `main` at `https://pradnyaprameswara.github.io/save-pradnya-prameswara/`, after GitHub Pages is enabled in repository settings. This is a reference-only fan parody, not an approved commercial release: temporary Walter White photos remain external and rights are unverified. See [GitHub Pages setup](docs/github-pages-preview.md) and [release checklist](docs/release-checklist.md). The separate Cloudflare production-style preview gate is unchanged.
 
 A custom `404.html`, `robots.txt`, and optional Cloudflare Pages `_headers` are included. The page continues to use `noindex, nofollow` until a conscious publication decision is made. When the user picks a real domain, add a validated absolute canonical/OG image URL rather than inventing one.
 
@@ -53,3 +53,5 @@ The default still uses the seven temporary Walter White photos for reference-onl
 ## Manual preview and release gate
 
 A GitHub Actions workflow can package a private review build without hosting it. A separate manual Cloudflare preview path is gated behind complete, rights-checked personal photos, an explicit confirmation phrase and user-configured Cloudflare credentials. It is **not** an automatic deployment. See [manual deployment guide](docs/deployment-preview.md).
+
+For local development and CI, Astro continues using `/`. For the project-scoped Pages build, `GITHUB_PAGES=true` selects `/save-pradnya-prameswara` as the `base`, and the deployment workflow uses GitHub's official Pages actions. Never change the temporary `noindex` or donation disclaimer simply to publish a preview.

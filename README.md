@@ -49,3 +49,7 @@ The grounded [visual parity matrix](docs/visual-parity-audit.md) links to the hi
 ## Optional personal gallery
 
 The default still uses the seven temporary Walter White photos for reference-only review. A rights-checked, opt-in gallery is available when owner-provided images are ready; see [personal gallery instructions](docs/personal-gallery.md). No personal photos were bundled.
+
+## Manual preview and release gate
+
+A GitHub Actions workflow can package a private review build without hosting it. A separate manual Cloudflare preview path is gated behind complete, rights-checked personal photos, an explicit confirmation phrase and user-configured Cloudflare credentials. It is **not** an automatic deployment. See [manual deployment guide](docs/deployment-preview.md).

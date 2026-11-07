@@ -22,3 +22,7 @@
 ## Optional Cloudflare Pages setup
 
 For a static Astro project: build command `pnpm install --frozen-lockfile && pnpm build`, output directory `dist`, Node runtime `22`, pnpm version `12.14.0` where supported. Connect the repository manually after checking rights and the final PR. Cloudflare Pages will recognize `public/_headers`, but deployment and production verification remain separate tasks. No API tokens, deployment credentials or real payment configuration are included.
+
+## Optional gated deployment workflow
+
+See [manual preview and approved Cloudflare deployment](deployment-preview.md). The default GitHub workflow creates an artifact only. It will not deploy automatically when a PR is merged. The Cloudflare option is deliberately blocked until user photographs, the complete rights manifest, an explicit approval phrase and credentials are supplied, and the `website-preview` environment is configured by the repository owner. CI validates the logical gate via `node --test tests/release-gate.test.mjs`.

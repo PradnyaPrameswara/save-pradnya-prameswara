@@ -26,6 +26,13 @@ jobs:
       - run: test -f dist/index.html && test -f dist/404.html && test -f dist/robots.txt
       - run: pnpm exec playwright install --with-deps chromium
       - run: pnpm test:e2e
+      - name: Build project-subpath GitHub Pages preview
+        run: pnpm build
+        env:
+          GITHUB_PAGES: "true"
+          PUBLIC_IMAGE_MODE: reference
+      - name: Check published asset URLs and honest preview disclosures
+        run: node scripts/verify-pages-build.mjs
       - name: Upload Playwright evidence
         if: always()
         uses: actions/upload-artifact@v4

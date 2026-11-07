@@ -26,3 +26,7 @@ For a static Astro project: build command `pnpm install --frozen-lockfile && pnp
 ## Optional gated deployment workflow
 
 See [manual preview and approved Cloudflare deployment](deployment-preview.md). The default GitHub workflow creates an artifact only. It will not deploy automatically when a PR is merged. The Cloudflare option is deliberately blocked until user photographs, the complete rights manifest, an explicit approval phrase and credentials are supplied, and the `website-preview` environment is configured by the repository owner. CI validates the logical gate via `node --test tests/release-gate.test.mjs`.
+
+## GitHub Pages public visual preview
+
+The [GitHub Pages preview workflow](github-pages-preview.md) builds reference mode with project-scoped Astro assets on every push to `main`, once enabled under Settings → Pages → Source: GitHub Actions. This is publicly accessible and `noindex` does not make it private. It is for visual review only; temporary film stills have unverified rights and must be replaced/cleared before a final public release. The Cloudflare manual `personal`-only release gate remains separate and unchanged.

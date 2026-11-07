@@ -57,7 +57,7 @@ export const gallery: GalleryPhoto[] = galleryMode === "reference"
       height: referenceDimensions[index][1],
     }))
   : personal.photos.map(photo => ({
-      src: "/images/personal/" + photo.filename,
+      src: import.meta.env.BASE_URL.replace(/\/$/, "") + "/images/personal/" + photo.filename,
       alt: photo.alt,
       width: photo.width,
       height: photo.height,

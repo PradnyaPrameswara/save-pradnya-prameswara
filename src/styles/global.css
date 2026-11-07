@@ -171,3 +171,20 @@ a:focus-visible, button:focus-visible { outline: 3px solid #fff; outline-offset:
   .donation-button:hover { filter: none; }
   .donation-button:active { transform: none; }
 }
+
+
+/* Preserve the original appearance by default; provide stronger reading
+   surfaces only when the visitor explicitly prefers higher contrast. */
+@media (prefers-contrast: more) {
+  .story-block {
+    background-color: rgba(0, 0, 0, .8);
+    border: 2px solid #ffff00;
+    padding: 12px;
+  }
+  .site-subtitle, .appeal-line { text-shadow: 2px 2px #000; }
+  .reference-note { background: #000; color: #fff; padding: 8px; }
+  .donation-button:focus-visible, a:focus-visible {
+    outline: 4px solid #fff;
+    outline-offset: 3px;
+  }
+}

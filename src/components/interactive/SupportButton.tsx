@@ -1,12 +1,23 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
+import type { KeyboardEvent } from "react";
 
 /** A playful CTA, not a donation/payment integration. */
 export function SupportButton() {
   const [expanded, setExpanded] = useState(false);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+
+  function handleEscape(event: KeyboardEvent<HTMLDivElement>) {
+    if (event.key === "Escape" && expanded) {
+      event.preventDefault();
+      setExpanded(false);
+      triggerRef.current?.focus();
+    }
+  }
 
   return (
-    <div className="support-widget">
+    <div className="support-widget" onKeyDown={handleEscape}>
       <button
+        ref={triggerRef}
         type="button"
         className="donation-button"
         aria-expanded={expanded}

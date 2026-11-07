@@ -113,3 +113,54 @@ test("reduced-motion preference suppresses button shift", async ({ page }) => {
   const button = page.getByRole("button", { name: /Click Here to Help/ });
   await expect(button).toHaveCSS("transform", "none");
 });
+
+
+test("the seven temporary reference photos stay pinned to one upstream revision", async ({ page }) => {
+  await page.goto("/");
+  const images = page.locator(".portrait img");
+  await expect(images).toHaveCount(7);
+  const sources = await images.evaluateAll((elements) =>
+    elements.map((image) => ({
+      src: (image as HTMLImageElement).getAttribute("src") || "",
+      fallback: (image as HTMLImageElement).dataset.fallbackSrc || "",
+      alt: (image as HTMLImageElement).alt,
+      loading: (image as HTMLImageElement).loading,
+    }))
+  );
+  for (const image of sources) {
+    expect(image.src).toContain("508d0aea07fb3dee18f8dda23ee93e6b5e3a2a3f");
+    expect(image.fallback).toContain("508d0aea07fb3dee18f8dda23ee93e6b5e3a2a3f");
+    expect(image.alt).toMatch(/Walter|Breaking Bad/i);
+  }
+  await expect(page.locator('link[rel="preload"][as="image"]')).toHaveAttribute("href", /walter_1\.jpg$/);
+});
+
+test("failed remote reference images use a visible truthful placeholder", async ({ page }) => {
+  await page.route(/walter_1\.jpg(?:\?.*)?$/, (route) => route.abort());
+  await page.goto("/");
+  const hero = page.locator(".hero-portrait");
+  await expect(hero.locator("img")).toHaveAttribute("data-reference-state", "unavailable");
+  await expect(hero).toHaveClass(/reference-unavailable/);
+  await expect(hero.locator("img")).toHaveAttribute("alt", /unavailable/i);
+});
+
+test("reference images do not introduce unrelated tracking or donations", async ({ page }) => {
+  await page.goto("/");
+  await expect(page.locator("form[action*='payment'], iframe[src*='payment']")).toHaveCount(0);
+  await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", "noindex, nofollow");
+});
+
+test("logs natural dimensions of the same seven reference photo slots", async ({ page }) => {
+  await page.goto("/");
+  const images = page.locator(".portrait img");
+  for (const image of await images.all()) await image.scrollIntoViewIfNeeded();
+  const values = await images.evaluateAll((elements) =>
+    elements.map((element, index) => ({
+      slot: index + 1,
+      naturalWidth: (element as HTMLImageElement).naturalWidth,
+      naturalHeight: (element as HTMLImageElement).naturalHeight,
+    }))
+  );
+  console.info("TEMPORARY_REFERENCE_IMAGE_DIMENSIONS", JSON.stringify(values));
+  expect(values).toHaveLength(7);
+});

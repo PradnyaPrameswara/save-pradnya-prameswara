@@ -17,6 +17,8 @@ import { reference } from "../data/reference";
     />
     <meta name="robots" content="noindex, nofollow" />
     <link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+    <link rel="preload" as="image" href={reference.photo(1)} fetchpriority="high" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet" />
@@ -30,7 +32,7 @@ import { reference } from "../data/reference";
         <p class="site-subtitle">Developer, Dreamer &amp; Problem Solver</p>
         <figure class="portrait hero-portrait">
           <img
-            src={reference.photo(1)}
+            src={reference.photo(1)} data-fallback-src={reference.fallbackPhoto(1)}
             alt="Temporary reference photo of Walter White smiling, not a photo of Pradnya"
             width="330"
             height="330"
@@ -39,12 +41,12 @@ import { reference } from "../data/reference";
           />
         </figure>
         <div class="photo-strip photo-strip-three" aria-label="Breaking Bad reference photo gallery">
-          <figure class="portrait"><img src={reference.photo(2)} width="220" height="230" alt="Temporary Breaking Bad reference photo of Walter White and his son" loading="lazy" decoding="async" /></figure>
-          <figure class="portrait"><img src={reference.photo(3)} width="220" height="230" alt="Temporary Breaking Bad reference photo of Walter and a baby" loading="lazy" decoding="async" /></figure>
-          <figure class="portrait"><img src={reference.photo(4)} width="220" height="230" alt="Temporary Breaking Bad reference photo of Walter with a family member" loading="lazy" decoding="async" /></figure>
+          <figure class="portrait"><img src={reference.photo(2)} data-fallback-src={reference.fallbackPhoto(2)} width="220" height="230" alt="Temporary Breaking Bad reference photo of Walter White and his son" loading="lazy" decoding="async" /></figure>
+          <figure class="portrait"><img src={reference.photo(3)} data-fallback-src={reference.fallbackPhoto(3)} width="220" height="230" alt="Temporary Breaking Bad reference photo of Walter and a baby" loading="lazy" decoding="async" /></figure>
+          <figure class="portrait"><img src={reference.photo(4)} data-fallback-src={reference.fallbackPhoto(4)} width="220" height="230" alt="Temporary Breaking Bad reference photo of Walter with a family member" loading="lazy" decoding="async" /></figure>
         </div>
         <figure class="portrait family-portrait">
-          <img src={reference.photo(5)} width="340" height="260" alt="Temporary Breaking Bad family reference photo" loading="lazy" decoding="async" />
+          <img src={reference.photo(5)} data-fallback-src={reference.fallbackPhoto(5)} width="340" height="260" alt="Temporary Breaking Bad family reference photo" loading="lazy" decoding="async" />
         </figure>
       </header>
 
@@ -69,8 +71,8 @@ import { reference } from "../data/reference";
       </section>
 
       <div class="photo-strip photo-strip-two" aria-label="More original reference photographs">
-        <figure class="portrait"><img src={reference.photo(6)} width="320" height="250" alt="Temporary photo of Walter White and Skyler from Breaking Bad" loading="lazy" decoding="async" /></figure>
-        <figure class="portrait"><img src={reference.photo(7)} width="320" height="250" alt="Temporary photo portrait of Walter White from Breaking Bad" loading="lazy" decoding="async" /></figure>
+        <figure class="portrait"><img src={reference.photo(6)} data-fallback-src={reference.fallbackPhoto(6)} width="320" height="250" alt="Temporary photo of Walter White and Skyler from Breaking Bad" loading="lazy" decoding="async" /></figure>
+        <figure class="portrait"><img src={reference.photo(7)} data-fallback-src={reference.fallbackPhoto(7)} width="320" height="250" alt="Temporary photo portrait of Walter White from Breaking Bad" loading="lazy" decoding="async" /></figure>
       </div>
 
       <section class="story-block long-story" aria-label="A message for Pradnya">
@@ -153,5 +155,6 @@ import { reference } from "../data/reference";
         <p class="copyright">© {new Date().getFullYear()} Save Pradnya Prameswara — just for fun.</p>
       </footer>
     </main>
+    <script>import "../scripts/reference-images";</script>
   </body>
 </html>

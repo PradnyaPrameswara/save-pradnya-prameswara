@@ -13,7 +13,7 @@ An intentionally old-fashioned, green-and-yellow, single-page parody website bas
 
 ```sh
 corepack enable
-pnpm install
+pnpm install --frozen-lockfile
 pnpm dev
 ```
 

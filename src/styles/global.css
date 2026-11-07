@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  font-family: "Comic Sans MS", "Comic Sans", "Trebuchet MS", cursive;
+  font-family: "Comic Sans MS", "Comic Neue", "Comic Sans", cursive;
   color: #fff;
   background: #1ba11a;
   font-synthesis: none;
@@ -16,24 +16,23 @@ body {
   background-color: #1ba11a;
   background-image: var(--reference-tile, none);
   background-repeat: repeat;
-  background-position: center top;
+  background-position: left top;
   color: #fff;
 }
 a { color: inherit; }
 a:focus-visible, button:focus-visible { outline: 3px solid #fff; outline-offset: 4px; }
 .skip-link { position: absolute; top: -4rem; left: 1rem; padding: .5rem 1rem; color: #000; background: #ff0; z-index: 5; }
 .skip-link:focus { top: 1rem; }
-.page-wrap { width: min(700px, calc(100% - 40px)); margin: 0 auto; padding: 18px 0 30px; }
+.page-wrap { width: min(700px, calc(100% - 40px)); margin: 0 auto; padding: 38px 0 32px; }
 .site-heading { text-align: center; }
 .site-heading h1 {
   margin: 0;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(3rem, 8.5vw, 5.1rem);
+  font-family: "Times New Roman", Times, serif;
+  font-size: clamp(3rem, 7.7vw, 4.55rem);
   line-height: 1.06;
   color: #fff;
   font-weight: 700;
-  letter-spacing: -.045em;
-  text-shadow: 0 2px 0 rgba(0, 70, 0, .3);
+  letter-spacing: -.025em;
 }
 .site-subtitle {
   margin: 2px 0 20px;
@@ -48,27 +47,26 @@ a:focus-visible, button:focus-visible { outline: 3px solid #fff; outline-offset:
   display: block;
   width: 100%;
   height: auto;
-  border: 9px solid #e3ce31;
+  border: 5px solid #e3ce31;
   background: #907e40;
-  object-fit: cover;
-  box-shadow: 2px 3px 0 rgba(0,0,0,.18);
+  object-fit: contain;
 }
 .hero-portrait { width: min(350px, 85%); margin: 0 auto 12px; }
-.hero-portrait img { aspect-ratio: 1 / 1; }
+.hero-portrait img { aspect-ratio: auto; }
 .photo-strip { display: flex; align-items: center; justify-content: center; }
 .photo-strip-three { gap: 10px; margin: 24px 0 26px; }
 .photo-strip-three .portrait { width: 30%; }
-.photo-strip-three img { height: 190px; object-fit: cover; }
-.photo-strip-three .portrait:nth-child(2) img { height: 158px; margin-top: 14px; }
+.photo-strip-three img { height: auto; }
+.photo-strip-three .portrait:nth-child(2) { align-self: center; }
 .family-portrait { width: min(345px, 82%); margin: 0 auto 35px; }
-.family-portrait img { aspect-ratio: 4 / 3; }
+.family-portrait img { aspect-ratio: auto; }
 .story-block { font-size: 16px; line-height: 1.55; padding: 0 9px; }
 .story-block p { margin: 0 0 22px; text-align: justify; overflow-wrap: break-word; }
-.copy-yellow { color: #ffec18; }
+.copy-yellow { color: #ffff00; }
 .story-lead { font-size: 19px; font-weight: 700; }
-.photo-strip-two { gap: 30px; margin: 20px 18px 34px; justify-content: space-between; }
-.photo-strip-two .portrait { width: 48%; }
-.photo-strip-two img { height: 205px; }
+.photo-strip-two { gap: 22px; margin: 28px 24px 34px; justify-content: space-between; }
+.photo-strip-two .portrait { width: 45%; }
+.photo-strip-two img { height: auto; }
 .long-story { color: #fff; }
 .long-story p { margin-bottom: 23px; }
 .appeal { text-align: center; margin-top: 55px; margin-bottom: 16px; }
@@ -77,7 +75,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid #fff; outline-offset:
 .appeal-line-two { font-size: clamp(1.3rem, 4.2vw, 1.8rem); }
 .appeal-line-three { color: #c7d300; }
 .retro-banner { margin: 0 -4px; padding: 13px 10px 12px; text-align: center; background: linear-gradient(#ba8e4b,#9e6530 55%,#a76b38); border-top: 2px solid rgba(255,247,198,.6); border-bottom: 2px solid rgba(116,52,3,.4); }
-.retro-banner h2 { margin: 0; font-family: Arial, Helvetica, sans-serif; font-size: clamp(2.3rem, 7vw, 3.55rem); font-weight: 900; line-height: 1; font-style: italic; color: #cec96a; -webkit-text-stroke: 1px #7a6522; text-shadow: 2px 2px #88672c, 3px 4px rgba(67,39,12,.45); text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 8px; }
+.retro-banner h2 { margin: 0; font-family: Arial, Helvetica, sans-serif; font-size: clamp(2.3rem, 5vw, 2.85rem); font-weight: 900; line-height: 1; font-style: italic; color: #cec96a; -webkit-text-stroke: 1px #7a6522; text-shadow: 2px 2px #88672c, 3px 4px rgba(67,39,12,.45); text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 8px; }
 .retro-banner p { margin: 16px 0 0; font-size: clamp(.9rem, 3vw, 1.2rem); font-weight: 800; color: #23140a; }
 .action-area { text-align: center; }
 .support-widget { padding: 30px 0 0; }
@@ -101,19 +99,19 @@ a:focus-visible, button:focus-visible { outline: 3px solid #fff; outline-offset:
 .copyright { font-family: Arial,sans-serif; font-size: 11px; color: #d9e0ce; margin: 18px auto 0; }
 .mobile-break { display: none; }
 @media (max-width: 560px) {
-  .page-wrap { width: min(100% - 22px, 700px); padding-top: 14px; }
+  .page-wrap { width: min(100% - 22px, 700px); padding-top: 18px; }
   .site-heading h1 { font-size: clamp(2.5rem, 11vw, 3.7rem); }
   .hero-portrait { width: min(320px, 86%); }
   .photo-strip-three { gap: 5px; margin: 20px 0 22px; }
   .photo-strip-three .portrait { width: 32%; }
   .portrait img { border-width: 5px; }
-  .photo-strip-three img { height: 135px; }
-  .photo-strip-three .portrait:nth-child(2) img { height: 115px; }
+  .photo-strip-three img { height: auto; }
+  .photo-strip-three .portrait:nth-child(2) { align-self: center; }
   .family-portrait { width: min(330px,88%); margin-bottom: 25px; }
   .story-block { padding: 0 5px; font-size: 15px; }
   .story-lead { font-size: 17px; }
   .photo-strip-two { gap: 9px; margin: 20px 0 30px; }
-  .photo-strip-two img { height: 155px; }
+  .photo-strip-two img { height: auto; }
   .appeal { margin-top: 30px; }
   .appeal-line-one { background-size: auto 50px, auto 50px; padding: 30px 7px 12px; }
   .retro-banner { margin: 0; }

@@ -1,0 +1,125 @@
+@import "tailwindcss";
+
+:root {
+  font-family: "Comic Sans MS", "Comic Sans", "Trebuchet MS", cursive;
+  color: #fff;
+  background: #1ba11a;
+  font-synthesis: none;
+}
+
+* { box-sizing: border-box; }
+html { min-width: 0; scroll-behavior: smooth; }
+body {
+  margin: 0;
+  min-width: 0;
+  min-height: 100vh;
+  background-color: #1ba11a;
+  background-image: var(--reference-tile, none);
+  background-repeat: repeat;
+  background-position: center top;
+  color: #fff;
+}
+a { color: inherit; }
+a:focus-visible, button:focus-visible { outline: 3px solid #fff; outline-offset: 4px; }
+.skip-link { position: absolute; top: -4rem; left: 1rem; padding: .5rem 1rem; color: #000; background: #ff0; z-index: 5; }
+.skip-link:focus { top: 1rem; }
+.page-wrap { width: min(700px, calc(100% - 40px)); margin: 0 auto; padding: 18px 0 30px; }
+.site-heading { text-align: center; }
+.site-heading h1 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(3rem, 8.5vw, 5.1rem);
+  line-height: 1.06;
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: -.045em;
+  text-shadow: 0 2px 0 rgba(0, 70, 0, .3);
+}
+.site-subtitle {
+  margin: 2px 0 20px;
+  font-size: clamp(1.1rem, 4.8vw, 1.55rem);
+  line-height: 1.35;
+  font-weight: 700;
+  color: #ffff00;
+  text-shadow: 1px 1px 0 #156e00;
+}
+.portrait { margin: 0; }
+.portrait img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 9px solid #e3ce31;
+  background: #907e40;
+  object-fit: cover;
+  box-shadow: 2px 3px 0 rgba(0,0,0,.18);
+}
+.hero-portrait { width: min(350px, 85%); margin: 0 auto 12px; }
+.hero-portrait img { aspect-ratio: 1 / 1; }
+.photo-strip { display: flex; align-items: center; justify-content: center; }
+.photo-strip-three { gap: 10px; margin: 24px 0 26px; }
+.photo-strip-three .portrait { width: 30%; }
+.photo-strip-three img { height: 190px; object-fit: cover; }
+.photo-strip-three .portrait:nth-child(2) img { height: 158px; margin-top: 14px; }
+.family-portrait { width: min(345px, 82%); margin: 0 auto 35px; }
+.family-portrait img { aspect-ratio: 4 / 3; }
+.story-block { font-size: 16px; line-height: 1.55; padding: 0 9px; }
+.story-block p { margin: 0 0 22px; text-align: justify; overflow-wrap: break-word; }
+.copy-yellow { color: #ffec18; }
+.story-lead { font-size: 19px; font-weight: 700; }
+.photo-strip-two { gap: 30px; margin: 20px 18px 34px; justify-content: space-between; }
+.photo-strip-two .portrait { width: 48%; }
+.photo-strip-two img { height: 205px; }
+.long-story { color: #fff; }
+.long-story p { margin-bottom: 23px; }
+.appeal { text-align: center; margin-top: 55px; margin-bottom: 16px; }
+.appeal-line { margin: 0 auto 25px; color: #ffeb16; font-size: clamp(1.45rem, 5vw, 2.15rem); font-weight: 800; line-height: 1.24; text-shadow: 1px 1px #248500; }
+.appeal-line-one { padding: 34px 25px 20px; background: var(--reference-bow-left, none) left top/auto 75px no-repeat, var(--reference-bow-right, none) right top/auto 75px no-repeat; }
+.appeal-line-two { font-size: clamp(1.3rem, 4.2vw, 1.8rem); }
+.appeal-line-three { color: #c7d300; }
+.retro-banner { margin: 0 -4px; padding: 13px 10px 12px; text-align: center; background: linear-gradient(#ba8e4b,#9e6530 55%,#a76b38); border-top: 2px solid rgba(255,247,198,.6); border-bottom: 2px solid rgba(116,52,3,.4); }
+.retro-banner h2 { margin: 0; font-family: Arial, Helvetica, sans-serif; font-size: clamp(2.3rem, 7vw, 3.55rem); font-weight: 900; line-height: 1; font-style: italic; color: #cec96a; -webkit-text-stroke: 1px #7a6522; text-shadow: 2px 2px #88672c, 3px 4px rgba(67,39,12,.45); text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 8px; }
+.retro-banner p { margin: 16px 0 0; font-size: clamp(.9rem, 3vw, 1.2rem); font-weight: 800; color: #23140a; }
+.action-area { text-align: center; }
+.support-widget { padding: 30px 0 0; }
+.donation-button { appearance: none; background: linear-gradient(133deg,#be2425 0%,#8e1215 65%,#6e0003); border: 8px ridge #7b0909; outline-offset: 5px; box-shadow: 4px 6px #290100, inset 2px 2px rgba(255,255,255,.3); color: #fff; cursor: pointer; display: inline-flex; flex-direction: column; align-items: center; justify-content: center; font-family: Georgia,serif; font-weight: 800; font-size: clamp(1.4rem, 4.5vw, 1.85rem); line-height: 1.28; min-height: 107px; min-width: min(265px, 88vw); padding: 12px 24px; text-shadow: 0 2px rgba(60,0,0,.5); }
+.donation-button:hover { filter: brightness(1.12); }
+.donation-button:active { transform: translate(3px,3px); box-shadow: 1px 2px #290100; }
+.no-payments { color: #fff8c6; font-size: 12px; margin: 24px 0 30px; font-weight: 700; }
+.support-explanation { width: min(420px,100%); margin: 28px auto 0; padding: 16px; color: #fff; background: #12421a; border: 3px dashed #f4e944; text-align: center; font-size: 14px; line-height: 1.5; }
+.support-explanation p { margin: 8px 0 14px; }
+.support-explanation a { color: yellow; font-weight: 700; }
+.counter-panel { color: #fff; background: #000; margin: 0 -4px; padding: 15px 14px 22px; text-align: center; }
+.counter-headline { margin: 0; font-size: clamp(1.05rem,3.5vw,1.4rem); font-weight: 900; line-height: 1.45; }
+.counter-subtitle { margin: 13px 0 13px; color: #d6d52c; font-size: 1.2rem; font-weight: 800; }
+.odometer { display: inline-flex; gap: 2px; border: 4px ridge #858585; padding: 4px 7px; background: #2a2a2a; font-family: "Courier New", monospace; font-size: clamp(1.35rem, 4vw, 2rem); font-weight: 800; letter-spacing: 0; }
+.odometer span { display: inline-block; min-width: .9em; padding: 0 .12em; color: #f4f4f4; background: linear-gradient(#080808 45%,#555 49%,#161616 52%); border-right: 1px solid #777; }
+.counter-notice { font-family: Arial,sans-serif; font-size: 11px; color: #b5b5b5; margin: 13px 0 0; }
+.site-footer { padding: 18px 0 0; text-align: center; color: #fff; }
+.site-footer nav { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px 21px; }
+.site-footer nav a { font-family: Arial,sans-serif; font-size: 12px; text-decoration: underline; }
+.reference-note { max-width: 610px; margin: 22px auto 0; font-family: Arial,sans-serif; font-size: 11px; line-height: 1.5; color: #eff7d7; }
+.copyright { font-family: Arial,sans-serif; font-size: 11px; color: #d9e0ce; margin: 18px auto 0; }
+.mobile-break { display: none; }
+@media (max-width: 560px) {
+  .page-wrap { width: min(100% - 22px, 700px); padding-top: 14px; }
+  .site-heading h1 { font-size: clamp(2.5rem, 11vw, 3.7rem); }
+  .hero-portrait { width: min(320px, 86%); }
+  .photo-strip-three { gap: 5px; margin: 20px 0 22px; }
+  .photo-strip-three .portrait { width: 32%; }
+  .portrait img { border-width: 5px; }
+  .photo-strip-three img { height: 135px; }
+  .photo-strip-three .portrait:nth-child(2) img { height: 115px; }
+  .family-portrait { width: min(330px,88%); margin-bottom: 25px; }
+  .story-block { padding: 0 5px; font-size: 15px; }
+  .story-lead { font-size: 17px; }
+  .photo-strip-two { gap: 9px; margin: 20px 0 30px; }
+  .photo-strip-two img { height: 155px; }
+  .appeal { margin-top: 30px; }
+  .appeal-line-one { background-size: auto 50px, auto 50px; padding: 30px 7px 12px; }
+  .retro-banner { margin: 0; }
+  .retro-banner h2 { font-size: clamp(1.75rem, 8vw, 2.5rem); }
+  .mobile-break { display: block; }
+  .desktop-break { display: none; }
+  .counter-panel { margin: 0; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .donation-button:hover { filter: none; } }

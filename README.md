@@ -45,3 +45,7 @@ A custom `404.html`, `robots.txt`, and optional Cloudflare Pages `_headers` are 
 ## Visual parity review
 
 The grounded [visual parity matrix](docs/visual-parity-audit.md) links to the historical community screenshot and documents intentional differences. CI also exports per-viewport geometry JSON with screenshots; neither constitutes a pixel-perfect claim.
+
+## Optional personal gallery
+
+The default still uses the seven temporary Walter White photos for reference-only review. A rights-checked, opt-in gallery is available when owner-provided images are ready; see [personal gallery instructions](docs/personal-gallery.md). No personal photos were bundled.

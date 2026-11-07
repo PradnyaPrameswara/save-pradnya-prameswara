@@ -1,7 +1,7 @@
 ---
 import "../styles/global.css";
 import { SupportButton } from "../components/interactive/SupportButton";
-import { reference } from "../data/reference";
+import { gallery, galleryDecorationStyle, galleryMode } from "../data/gallery";
 ---
 
 <!doctype html>
@@ -24,13 +24,13 @@ import { reference } from "../data/reference";
     <meta name="twitter:card" content="summary" />
     <link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin />
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
-    <link rel="preload" as="image" href={reference.photo(1)} fetchpriority="high" />
+    <link rel="preload" as="image" href={gallery[0].src} fetchpriority="high" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   </head>
-  <body style={`--reference-tile: url('${reference.tile}'); --reference-bow-left: url('${reference.bowLeft}'); --reference-bow-right: url('${reference.bowRight}')`}>
+  <body style={galleryDecorationStyle} data-gallery-mode={galleryMode}>
     <a class="skip-link" href="#main-content">Skip to content</a>
     <main id="main-content" class="page-wrap">
       <header class="site-heading">
@@ -38,21 +38,21 @@ import { reference } from "../data/reference";
         <p class="site-subtitle">Developer, Dreamer &amp; Problem Solver</p>
         <figure class="portrait hero-portrait">
           <img
-            src={reference.photo(1)} data-fallback-src={reference.fallbackPhoto(1)}
-            alt="Temporary reference photo of Walter White smiling, not a photo of Pradnya"
-            width="402"
-            height="517"
+            src={gallery[0].src} data-fallback-src={gallery[0].fallback}
+            alt={gallery[0].alt}
+            width={gallery[0].width}
+            height={gallery[0].height}
             fetchpriority="high"
             decoding="async"
           />
         </figure>
         <div class="photo-strip photo-strip-three" aria-label="Breaking Bad reference photo gallery">
-          <figure class="portrait"><img src={reference.photo(2)} data-fallback-src={reference.fallbackPhoto(2)} width="247" height="322" alt="Temporary Breaking Bad reference photo of Walter White and his son" loading="lazy" decoding="async" /></figure>
-          <figure class="portrait"><img src={reference.photo(3)} data-fallback-src={reference.fallbackPhoto(3)} width="226" height="301" alt="Temporary Breaking Bad reference photo of Walter and a baby" loading="lazy" decoding="async" /></figure>
-          <figure class="portrait"><img src={reference.photo(4)} data-fallback-src={reference.fallbackPhoto(4)} width="220" height="343" alt="Temporary Breaking Bad reference photo of Walter with a family member" loading="lazy" decoding="async" /></figure>
+          <figure class="portrait"><img src={gallery[1].src} data-fallback-src={gallery[1].fallback} width={gallery[1].width} height={gallery[1].height} alt={gallery[1].alt} loading="lazy" decoding="async" /></figure>
+          <figure class="portrait"><img src={gallery[2].src} data-fallback-src={gallery[2].fallback} width={gallery[2].width} height={gallery[2].height} alt={gallery[2].alt} loading="lazy" decoding="async" /></figure>
+          <figure class="portrait"><img src={gallery[3].src} data-fallback-src={gallery[3].fallback} width={gallery[3].width} height={gallery[3].height} alt={gallery[3].alt} loading="lazy" decoding="async" /></figure>
         </div>
         <figure class="portrait family-portrait">
-          <img src={reference.photo(5)} data-fallback-src={reference.fallbackPhoto(5)} width="362" height="250" alt="Temporary Breaking Bad family reference photo" loading="lazy" decoding="async" />
+          <img src={gallery[4].src} data-fallback-src={gallery[4].fallback} width={gallery[4].width} height={gallery[4].height} alt={gallery[4].alt} loading="lazy" decoding="async" />
         </figure>
       </header>
 
@@ -77,8 +77,8 @@ import { reference } from "../data/reference";
       </section>
 
       <div class="photo-strip photo-strip-two" aria-label="More original reference photographs">
-        <figure class="portrait"><img src={reference.photo(6)} data-fallback-src={reference.fallbackPhoto(6)} width="277" height="302" alt="Temporary photo of Walter White and Skyler from Breaking Bad" loading="lazy" decoding="async" /></figure>
-        <figure class="portrait"><img src={reference.photo(7)} data-fallback-src={reference.fallbackPhoto(7)} width="193" height="266" alt="Temporary photo portrait of Walter White from Breaking Bad" loading="lazy" decoding="async" /></figure>
+        <figure class="portrait"><img src={gallery[5].src} data-fallback-src={gallery[5].fallback} width={gallery[5].width} height={gallery[5].height} alt={gallery[5].alt} loading="lazy" decoding="async" /></figure>
+        <figure class="portrait"><img src={gallery[6].src} data-fallback-src={gallery[6].fallback} width={gallery[6].width} height={gallery[6].height} alt={gallery[6].alt} loading="lazy" decoding="async" /></figure>
       </div>
 
       <section class="story-block long-story" aria-label="A message for Pradnya">
@@ -154,9 +154,9 @@ import { reference } from "../data/reference";
           <a href="https://www.savewalterwhite.com/" target="_blank" rel="noopener noreferrer">Original Inspiration</a>
         </nav>
         <p id="reference-note" class="reference-note">
-          Unofficial Breaking Bad-inspired fan homage. The seven photos are
-          temporary Walter White reference images; they do not depict Pradnya.
-          No affiliation with AMC or the series, and no donations are accepted.
+          {galleryMode === "reference"
+            ? "Unofficial Breaking Bad-inspired parody. Seven temporary Walter White reference images do not depict Pradnya; rights are unverified. No AMC affiliation or donations."
+            : "Unofficial Breaking Bad-inspired parody with owner-supplied, rights-checked photographs. No AMC affiliation or donations."}
         </p>
         <p class="copyright">© {new Date().getFullYear()} Save Pradnya Prameswara — just for fun.</p>
       </footer>

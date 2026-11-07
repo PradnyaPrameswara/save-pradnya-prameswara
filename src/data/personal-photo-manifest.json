@@ -1,0 +1,67 @@
+{
+  "photos": [
+    {
+      "slot": 1,
+      "filename": "portrait-1.webp",
+      "width": 402,
+      "height": 517,
+      "alt": "",
+      "rights": "pending",
+      "credit": ""
+    },
+    {
+      "slot": 2,
+      "filename": "portrait-2.webp",
+      "width": 247,
+      "height": 322,
+      "alt": "",
+      "rights": "pending",
+      "credit": ""
+    },
+    {
+      "slot": 3,
+      "filename": "portrait-3.webp",
+      "width": 226,
+      "height": 301,
+      "alt": "",
+      "rights": "pending",
+      "credit": ""
+    },
+    {
+      "slot": 4,
+      "filename": "portrait-4.webp",
+      "width": 220,
+      "height": 343,
+      "alt": "",
+      "rights": "pending",
+      "credit": ""
+    },
+    {
+      "slot": 5,
+      "filename": "portrait-5.webp",
+      "width": 362,
+      "height": 250,
+      "alt": "",
+      "rights": "pending",
+      "credit": ""
+    },
+    {
+      "slot": 6,
+      "filename": "portrait-6.webp",
+      "width": 277,
+      "height": 302,
+      "alt": "",
+      "rights": "pending",
+      "credit": ""
+    },
+    {
+      "slot": 7,
+      "filename": "portrait-7.webp",
+      "width": 193,
+      "height": 266,
+      "alt": "",
+      "rights": "pending",
+      "credit": ""
+    }
+  ]
+}

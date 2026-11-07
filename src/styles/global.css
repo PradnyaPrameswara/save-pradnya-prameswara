@@ -27,12 +27,12 @@ a { color: inherit; }
 a:focus-visible, button:focus-visible { outline: 3px solid #fff; outline-offset: 4px; }
 .skip-link { position: absolute; top: -4rem; left: 1rem; padding: .5rem 1rem; color: #000; background: #ff0; z-index: 5; }
 .skip-link:focus { top: 1rem; }
-.page-wrap { width: min(700px, calc(100% - 40px)); margin: 0 auto; padding: 38px 0 32px; }
+.page-wrap { width: min(700px, calc(100% - 40px)); margin: 0 auto; padding: 48px 0 32px; }
 .site-heading { text-align: center; }
 .site-heading h1 {
   margin: 0;
   font-family: "Times New Roman", Times, serif;
-  font-size: clamp(3rem, 7.7vw, 4.55rem);
+  font-size: clamp(3rem, 7.7vw, 4.55rem); /* Longer name: retain a single centered desktop line. */
   line-height: 1.06;
   color: #fff;
   font-weight: 700;
@@ -46,12 +46,23 @@ a:focus-visible, button:focus-visible { outline: 3px solid #fff; outline-offset:
   color: #ffff00;
   text-shadow: 1px 1px 0 #156e00;
 }
-.portrait { margin: 0; }
+/* The original has a 350px hero, a close three-photo row, a 350px
+   family image and a narrower two-photo row. Frame the images at the
+   figure level so their source aspect ratios remain unchanged. */
+.portrait {
+  margin: 0;
+  display: block;
+  min-width: 0;
+  padding: 3px;
+  border: 2px solid #792e57;
+  background: #f6f0e7;
+  box-shadow: 0 0 0 1px rgba(255, 248, 234, .75);
+}
 .portrait img {
   display: block;
   width: 100%;
   height: auto;
-  border: 5px solid #e3ce31;
+  border: 0;
   background: #907e40;
   object-fit: contain;
 }
@@ -75,16 +86,28 @@ a:focus-visible, button:focus-visible { outline: 3px solid #fff; outline-offset:
   font: bold 13px/1.4 "Comic Sans MS", "Comic Neue", cursive;
   text-align: center;
 }
-.hero-portrait { width: min(350px, 85%); margin: 0 auto 12px; }
-.hero-portrait img { aspect-ratio: auto; }
+.hero-portrait { width: min(350px, 85%); margin: 0 auto 14px; }
 .photo-strip { display: flex; align-items: center; justify-content: center; }
-.photo-strip-three { gap: 10px; margin: 24px 0 26px; }
-.photo-strip-three .portrait { width: 30%; }
-.photo-strip-three img { height: auto; }
-.photo-strip-three .portrait:nth-child(2) { align-self: center; }
-.family-portrait { width: min(345px, 82%); margin: 0 auto 35px; }
-.family-portrait img { aspect-ratio: auto; }
-.story-block { font-size: 16px; line-height: 1.55; padding: 0 9px; }
+.photo-strip-three {
+  width: min(604px, 100%);
+  gap: 16px;
+  margin: 22px auto 30px;
+}
+.photo-strip-three .portrait { flex: 0 1 auto; }
+.photo-strip-three .portrait--2 { width: 190px; }
+.photo-strip-three .portrait--3 { width: 184px; }
+.photo-strip-three .portrait--4 { width: 190px; }
+.family-portrait { width: min(350px, 85%); margin: 0 auto 34px; }
+.photo-strip-two {
+  width: min(604px, 100%);
+  gap: 36px;
+  margin: 20px auto 34px;
+  justify-content: space-between;
+}
+.photo-strip-two .portrait { flex: 0 1 auto; }
+.photo-strip-two .portrait--6 { width: 270px; }
+.photo-strip-two .portrait--7 { width: 270px; }
+.story-block { font-size: 17px; line-height: 1.52; padding: 0 16px; }
 .story-block p { margin: 0 0 22px; text-align: justify; overflow-wrap: break-word; }
 .copy-yellow { color: #ffff00; }
 .story-lead { font-size: 19px; font-weight: 700; }
@@ -93,20 +116,73 @@ a:focus-visible, button:focus-visible { outline: 3px solid #fff; outline-offset:
 .photo-strip-two img { height: auto; }
 .long-story { color: #fff; }
 .long-story p { margin-bottom: 23px; }
-.appeal { text-align: center; margin-top: 55px; margin-bottom: 16px; }
-.appeal-line { margin: 0 auto 25px; color: #ffeb16; font-size: clamp(1.45rem, 5vw, 2.15rem); font-weight: 800; line-height: 1.24; text-shadow: 1px 1px #248500; }
-.appeal-line-one { padding: 34px 25px 20px; background: var(--reference-bow-left, none) left top/auto 75px no-repeat, var(--reference-bow-right, none) right top/auto 75px no-repeat; }
-.appeal-line-two { font-size: clamp(1.3rem, 4.2vw, 1.8rem); }
+.appeal { text-align: center; margin-top: 48px; margin-bottom: 12px; }
+.appeal-line {
+  margin: 0 auto 22px;
+  color: #ffeb16;
+  font-size: clamp(1.45rem, 4vw, 1.9rem);
+  font-weight: 800;
+  line-height: 1.17;
+  text-shadow: 1px 1px #248500;
+}
+.appeal-line-one {
+  padding: 34px 25px 18px;
+  background:
+    var(--reference-bow-left, none) left top / auto 75px no-repeat,
+    var(--reference-bow-right, none) right top / auto 75px no-repeat;
+}
+.appeal-line-two { font-size: clamp(1.4rem, 3.7vw, 1.8rem); }
 .appeal-line-three { color: #c7d300; }
-.retro-banner { margin: 0 -4px; padding: 13px 10px 12px; text-align: center; background: linear-gradient(#ba8e4b,#9e6530 55%,#a76b38); border-top: 2px solid rgba(255,247,198,.6); border-bottom: 2px solid rgba(116,52,3,.4); }
-.retro-banner h2 { margin: 0; font-family: Arial, Helvetica, sans-serif; font-size: clamp(2.3rem, 5vw, 2.85rem); font-weight: 900; line-height: 1; font-style: italic; color: #cec96a; -webkit-text-stroke: 1px #7a6522; text-shadow: 2px 2px #88672c, 3px 4px rgba(67,39,12,.45); text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 8px; }
-.retro-banner p { margin: 16px 0 0; font-size: clamp(.9rem, 3vw, 1.2rem); font-weight: 800; color: #23140a; }
+.retro-banner {
+  margin: 0;
+  padding: 12px 12px 13px;
+  text-align: center;
+  background: linear-gradient(180deg, #b27b48 0%, #a16b38 100%);
+  border-top: 2px solid rgba(239, 192, 124, .72);
+  border-bottom: 2px solid rgba(107, 59, 24, .65);
+}
+.retro-banner h2 {
+  margin: 0;
+  font-family: "Arial Black", "Arial", Helvetica, sans-serif;
+  font-size: clamp(1.95rem, 5vw, 3.125rem);
+  font-style: italic;
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -.045em;
+  color: #c5bc61;
+  -webkit-text-stroke: .75px #74652c;
+  text-shadow: 0 1px 0 #e8dc88, 2px 2px 0 #837038, 3px 3px 0 #604b24;
+}
+.retro-banner__wordmark {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+  padding: 0 2px 9px;
+}
+/* The reference has a continuous pale-gold stripe below the slanted title,
+   not the browser's per-glyph text-decoration underline. */
+.retro-banner__wordmark::after {
+  content: "";
+  position: absolute;
+  left: 3px;
+  right: 3px;
+  bottom: 0;
+  height: 4px;
+  background: #c8c16e;
+  box-shadow: 0 3px 0 #76572e;
+}
+.retro-banner p {
+  margin: 9px 0 0;
+  font-size: clamp(.9rem, 2.5vw, 1.18rem);
+  font-weight: 800;
+  color: #23140a;
+}
 .action-area { text-align: center; }
-.support-widget { padding: 30px 0 0; }
+.support-widget { padding: 24px 0 0; }
 .donation-button { appearance: none; background: linear-gradient(133deg,#be2425 0%,#8e1215 65%,#6e0003); border: 8px ridge #7b0909; outline-offset: 5px; box-shadow: 4px 6px #290100, inset 2px 2px rgba(255,255,255,.3); color: #fff; cursor: pointer; display: inline-flex; flex-direction: column; align-items: center; justify-content: center; font-family: Georgia,serif; font-weight: 800; font-size: clamp(1.4rem, 4.5vw, 1.85rem); line-height: 1.28; min-height: 107px; min-width: min(265px, 88vw); padding: 12px 24px; text-shadow: 0 2px rgba(60,0,0,.5); }
 .donation-button:hover { filter: brightness(1.12); }
 .donation-button:active { transform: translate(3px,3px); box-shadow: 1px 2px #290100; }
-.no-payments { color: #fff8c6; font-size: 12px; margin: 24px 0 30px; font-weight: 700; }
+.no-payments { color: #fff8c6; font-size: 12px; margin: 22px 0 28px; font-weight: 700; }
 .support-explanation { width: min(420px,100%); margin: 28px auto 0; padding: 16px; color: #fff; background: #12421a; border: 3px dashed #f4e944; text-align: center; font-size: 14px; line-height: 1.5; }
 .support-explanation p { margin: 8px 0 14px; }
 .support-explanation a { color: yellow; font-weight: 700; }
@@ -126,21 +202,22 @@ a:focus-visible, button:focus-visible { outline: 3px solid #fff; outline-offset:
   .page-wrap { width: min(100% - 22px, 700px); padding-top: 18px; }
   .site-heading h1 { font-size: clamp(2.35rem, 10.4vw, 3.65rem); line-height: 1.04; overflow-wrap: anywhere; }
   .hero-portrait { width: min(320px, 86%); }
-  .photo-strip-three { gap: 5px; margin: 20px 0 22px; }
-  .photo-strip-three .portrait { width: min(32%, 140px); min-width: 0; }
-  .portrait img { border-width: 5px; }
-  .photo-strip-three img { height: auto; }
-  .photo-strip-three .portrait:nth-child(2) { align-self: center; }
-  .family-portrait { width: min(330px,88%); margin-bottom: 25px; }
+  .portrait { padding: 2px; border-width: 2px; }
+  .photo-strip-three { width: 100%; gap: 5px; margin: 18px auto 22px; }
+  .photo-strip-three .portrait--2,
+  .photo-strip-three .portrait--3,
+  .photo-strip-three .portrait--4 { width: min(32%, 140px); }
+  .family-portrait { width: min(330px, 88%); margin-bottom: 25px; }
   .story-block { padding: 0 5px; font-size: 15px; }
   .story-block p { text-align: left; line-height: 1.65; hyphens: auto; }
   .story-lead { font-size: 17px; }
-  .photo-strip-two { gap: 9px; margin: 20px 0 30px; }
-  .photo-strip-two img { height: auto; }
+  .photo-strip-two { width: 100%; gap: 9px; margin: 20px auto 30px; }
+  .photo-strip-two .portrait--6,
+  .photo-strip-two .portrait--7 { width: 47%; }
   .appeal { margin-top: 30px; }
   .appeal-line-one { background-size: auto 44px, auto 44px; padding: 25px clamp(30px, 8vw, 48px) 12px; font-size: clamp(1.25rem, 5.5vw, 1.75rem); }
-  .retro-banner { margin: 0; }
-  .retro-banner h2 { font-size: clamp(1.75rem, 8vw, 2.5rem); }
+  .retro-banner h2 { font-size: clamp(1.72rem, 7.2vw, 2.5rem); letter-spacing: -.05em; }
+  .retro-banner__wordmark { padding-bottom: 8px; }
   .mobile-break { display: block; }
   .desktop-break { display: none; }
   .counter-panel { margin: 0; }
@@ -151,20 +228,20 @@ a:focus-visible, button:focus-visible { outline: 3px solid #fff; outline-offset:
   .site-subtitle { font-size: 1rem; margin-bottom: 14px; }
   .hero-portrait { width: min(90%, 300px); }
   .photo-strip-three { gap: 4px; }
-  .photo-strip-three img, .photo-strip-two img { border-width: 3px; }
-  .photo-strip-two { margin-inline: 2px; }
+  .photo-strip-three .portrait, .photo-strip-two .portrait { padding: 2px; }
+  .photo-strip-two { margin-inline: auto; }
   .story-block { font-size: 14px; }
   .story-lead { font-size: 16px; }
   .appeal-line { overflow-wrap: break-word; }
   .appeal-line-one { background-size: auto 38px, auto 38px; padding-inline: 27px; }
-  .retro-banner h2 { font-size: clamp(1.6rem, 7.8vw, 2rem); }
+  .retro-banner h2 { font-size: clamp(1.6rem, 7.5vw, 2rem); }
   .donation-button { min-width: min(245px, 86vw); }
   .site-footer nav { column-gap: 15px; }
 }
 @media (min-width: 561px) and (max-width: 820px) {
-  .photo-strip-three { gap: clamp(7px, 1.5vw, 12px); }
-  .photo-strip-two { margin-inline: 20px; gap: clamp(12px, 3vw, 24px); }
-  .retro-banner h2 { font-size: clamp(2.1rem, 4.6vw, 2.85rem); }
+  .photo-strip-three { gap: clamp(7px, 1.5vw, 16px); }
+  .photo-strip-two { gap: clamp(12px, 3vw, 36px); }
+  .retro-banner h2 { font-size: clamp(2.1rem, 4.6vw, 3.125rem); }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

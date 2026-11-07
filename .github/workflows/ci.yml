@@ -18,9 +18,12 @@ jobs:
         with:
           node-version: '22.23.4'
       - run: pnpm install --no-frozen-lockfile
-      - run: pnpm check
+      - name: Verify local check dependencies
+        run: |
+          node -e "const {createRequire}=require('node:module'); const r=createRequire(process.cwd()+'/package.json'); for(const p of ['@astrojs/check','typescript']) console.log(p, r.resolve(p))"
       - run: pnpm typecheck
       - run: pnpm build
+      - run: pnpm check
       - run: test -f dist/index.html
       - run: pnpm exec playwright install --with-deps chromium
       - run: pnpm test:e2e

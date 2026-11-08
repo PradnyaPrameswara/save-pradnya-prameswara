@@ -1,6 +1,7 @@
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { strict as assert } from "node:assert";
 import { resolve } from "node:path";
+import { collectAstroAssetPaths } from "./verify-pages-live.mjs";
 
 const base = "/save-pradnya-prameswara";
 const dist = resolve("dist");
@@ -23,6 +24,12 @@ assert.match(notFound, /href="\/save-pradnya-prameswara\/"/, "404 home link must
 assert.ok(home.includes('data-gallery-mode="reference"'), "Preview must clearly use temporary photo references");
 assert.ok(home.includes("no real donations or payments"), "Preview cannot imply real payments");
 assert.ok(home.includes("Walter White"), "Preview must disclose temporary reference images");
-assert.ok(/(?:src|href)=["']\/save-pradnya-prameswara\/_astro\//.test(home), "Astro assets must be URL-prefixed");
+const assetPaths = collectAstroAssetPaths(home);
+assert.ok(assetPaths.some(path => path.endsWith(".css")), "Astro CSS must use the project subpath");
+assert.ok(assetPaths.some(path => path.endsWith(".js")), "Astro island JS must use the project subpath");
+for (const asset of assetPaths) {
+  const localPath = resolve(dist, asset.slice(base.length + 1));
+  assert.ok(existsSync(localPath), "Missing compiled asset referenced by Astro HTML: " + asset);
+}
 
 console.info("GitHub Pages project-path build verified: " + base + "/");

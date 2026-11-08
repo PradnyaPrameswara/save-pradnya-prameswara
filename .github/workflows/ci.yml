@@ -22,7 +22,7 @@ jobs:
       - run: pnpm typecheck
       - run: pnpm build
       - run: pnpm check
-      - run: node --test tests/release-gate.test.mjs
+      - run: node --test tests/release-gate.test.mjs tests/pages-live.test.mjs
       - run: test -f dist/index.html && test -f dist/404.html && test -f dist/robots.txt
       - run: pnpm exec playwright install --with-deps chromium
       - run: pnpm test:e2e
@@ -33,6 +33,8 @@ jobs:
           PUBLIC_IMAGE_MODE: reference
       - name: Check published asset URLs and honest preview disclosures
         run: node scripts/verify-pages-build.mjs
+      - name: Record compiled JS/CSS asset sizes
+        run: node scripts/audit-production-assets.mjs
       - name: Upload Playwright evidence
         if: always()
         uses: actions/upload-artifact@v4

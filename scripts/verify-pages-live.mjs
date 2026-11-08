@@ -3,6 +3,17 @@ import { resolve } from "node:path";
 
 const projectPath = "/save-pradnya-prameswara/";
 
+/**
+ * Astro 7 can inline its loader and expose external JS as
+ * component-url / renderer-url attributes on <astro-island>.
+ * Both those references and standard src/href are genuine assets.
+ */
+export function collectAstroAssetPaths(html) {
+  const pattern = /(?:src|href|component-url|renderer-url|before-hydration-url)="(\/save-pradnya-prameswara\/_astro\/[^"]+)"/g;
+  return [...new Set(Array.from(html.matchAll(pattern), match => match[1]))];
+}
+
+
 function requireCondition(value, explanation) {
   if (!value) throw new Error(explanation);
 }
@@ -28,7 +39,7 @@ export async function verifyPagesOnce(url, expectedBuildSha, fetcher = fetch) {
   requireCondition(home.body.includes("no real donations or payments"), "Parody/no-donation notice missing.");
   requireCondition(home.body.includes("rights are unverified"), "Reference image rights disclosure missing.");
 
-  const assets = [...new Set([...home.body.matchAll(/(?:src|href)="(\/save-pradnya-prameswara\/_astro\/[^"]+)"/g)].map(match => match[1]))];
+  const assets = collectAstroAssetPaths(home.body);
   requireCondition(assets.some(asset => asset.endsWith(".js")), "No subpath-prefixed JavaScript file found.");
   requireCondition(assets.some(asset => asset.endsWith(".css")), "No subpath-prefixed CSS file found.");
   for (const asset of assets.slice(0, 8)) {
